@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="SleepAndMoodTracker.Client/SleepAndMoodTracker.Client.csproj" Id="9a1186b8-e30e-4911-8303-03276c9391ee" />
+  <Project Path="SleepAndMoodTracker.Core/SleepAndMoodTracker.Core.csproj" Id="62809197-e0c2-4cac-bcec-5a2ca3d9cbdd" />
+</Solution>
