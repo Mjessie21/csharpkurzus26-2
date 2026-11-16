@@ -9,7 +9,7 @@ public interface IDailyLogManager
     Either<DailyLog, Exception> AddDailyLog(string dateInput, string sleepInput, string moodInput, string note);
     IReadOnlyList<DailyLog> GetAllLogs();
     IEnumerable<DailyLog> GetBadSleepDays();
-    double GetAvarageMood();
+    double GetAverageMood();
     DailyLog? GetBestDay();
     Dictionary<SleepCategory,double> GetAvarageMoodBySleepCategory();
 

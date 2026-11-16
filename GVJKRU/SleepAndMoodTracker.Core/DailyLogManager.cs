@@ -61,8 +61,13 @@ internal sealed class DailyLogManager : IDailyLogManager
             .OrderBy(dailyLog => dailyLog.Date);
     }
 
-    public double GetAvarageMood()
+    public double GetAverageMood()
     {
+        if (_dailyLogs.Count == 0) 
+        {
+            return 0;
+        }
+
         return _dailyLogs.Average(dailyLog => dailyLog.MoodScore);
     }
 
