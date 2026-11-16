@@ -87,13 +87,6 @@ internal sealed class DailyLogManager : IDailyLogManager
 
 
 
-
-
-
-
-
-
-
     private static DateOnly ParseDate(string dateInput)
     {
         if (string.IsNullOrWhiteSpace(dateInput))
