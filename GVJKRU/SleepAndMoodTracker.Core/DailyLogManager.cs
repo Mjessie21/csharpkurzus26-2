@@ -54,6 +54,46 @@ internal sealed class DailyLogManager : IDailyLogManager
     }
 
 
+    public IEnumerable<DailyLog> GetBadSleepDays()
+    {
+        return _dailyLogs
+            .Where(dailyLog => SleepCategoryClassifier.Classify(dailyLog.SleepHours) == SleepCategory.Short)
+            .OrderBy(dailyLog => dailyLog.Date);
+    }
+
+    public double GetAvarageMood()
+    {
+        return _dailyLogs.Average(dailyLog => dailyLog.MoodScore);
+    }
+
+    public DailyLog? GetBestDay()
+    {
+        return _dailyLogs
+            .OrderByDescending(dailyLog => dailyLog.MoodScore)
+            .ThenByDescending(dailyLog => dailyLog.SleepHours)
+            .FirstOrDefault();
+    }
+
+    public Dictionary<SleepCategory, double> GetAvarageMoodBySleepCategory()
+    {
+        return _dailyLogs
+            .GroupBy(dailyLog => SleepCategoryClassifier.Classify(dailyLog.SleepHours))
+            .OrderBy(group => group.Key)
+            .ToDictionary(
+                group => group.Key,
+                group => group.Average(dailyLog => dailyLog.MoodScore)
+            );
+    }
+
+
+
+
+
+
+
+
+
+
     private static DateOnly ParseDate(string dateInput)
     {
         if (string.IsNullOrWhiteSpace(dateInput))
@@ -108,26 +148,7 @@ internal sealed class DailyLogManager : IDailyLogManager
         return moodScore;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 }
 
 
